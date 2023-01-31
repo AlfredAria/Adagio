@@ -30,16 +30,20 @@ Developing this project in VSCode is recommended.
 3. Try to browse through the files `instructions.md`, `LICENSE` and `README.md` about this project.
 4. Right click on `instructions.md` and select Open Preview. You should see a formatted view of this file same as on the Github page (assuming they are updated to the same version).
 
-# 
+## Git authentication with `git-credential-manager-core`
+1. Install `git-credential-manager-core` 
+2. Follow instructions here to generate a personal access token:
+ https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
+3. To confirm that the token works, try running `$ git pull` in the repository folder `~/Documents/Workspace/Adagio`. When this little window below pop up, paste in the token you just generated.
 
 ## Introduction to Git
-# Part 1: https://www.youtube.com/watch?v=9GKpbI1siow
-# Part 2: https://www.youtube.com/watch?v=n-p1RUmdl9M
-# Part 3: https://www.youtube.com/watch?v=UFEby2zo-9E
-# Part 4: https://www.youtube.com/watch?v=ol_UCWox9kc
+- Part 1: https://www.youtube.com/watch?v=9GKpbI1siow
+- Part 2: https://www.youtube.com/watch?v=n-p1RUmdl9M
+- Part 3: https://www.youtube.com/watch?v=UFEby2zo-9E
+- Part 4: https://www.youtube.com/watch?v=ol_UCWox9kc
 
-# Create a local branch for doing your work, and push it on Github
+## Create a local branch for doing your work, and push it on Github
+```
 $ git checkout -b <branch-name>
 $ git push origin -b <branch-name>
-
-#
+```
