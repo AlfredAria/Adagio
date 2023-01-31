@@ -1,4 +1,4 @@
-# Development Instructions (Mac)
+# Week 1 - Setting up the project environment (Mac)
 The following setups are for a developer using a MacBook.
 
 ## Install VSCode
@@ -6,7 +6,7 @@ Download the App here: https://code.visualstudio.com
 
 Move the app file to Applications so you could see it in the Mac Launcher.
 
-## XCode toolkits on Mackbook
+## XCode toolkits on Macbook
 You may need the Apple Command Line Tools Package to be able to use Git and other tools.
 Follow this instruction to ensure XCode developer tools are installed:
 https://apple.stackexchange.com/questions/254380/why-am-i-getting-an-invalid-active-developer-path-when-attempting-to-use-git-a
@@ -35,6 +35,7 @@ Developing this project in VSCode is recommended.
 2. Follow instructions here to generate a personal access token:
  https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
 3. To confirm that the token works, try running `$ git pull` in the repository folder `~/Documents/Workspace/Adagio`. When this little window below pop up, paste in the token you just generated.
+![Git authentication](img/week1-git-authentication.png)
 
 ## Introduction to Git
 - Part 1: https://www.youtube.com/watch?v=9GKpbI1siow
