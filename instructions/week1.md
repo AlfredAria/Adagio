@@ -46,5 +46,5 @@ Developing this project in VSCode is recommended.
 ## Create a local branch for doing your work, and push it on Github
 ```
 $ git checkout -b <branch-name>
-$ git push origin -b <branch-name>
+$ git push --set-upstream origin -b <branch-name>
 ```
