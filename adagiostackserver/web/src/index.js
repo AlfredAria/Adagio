@@ -3,11 +3,42 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import ErrorPage from "./error-page";
+import ProcessArticle from './ProcessArticle';
+import SearchWorkflow from './SearchWorkflow';
+import BrowseWorkflows from './BrowseWorkflows';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    errorElement: <ErrorPage />,
+
+    children: [
+      {
+        path: "/process-article",
+        element: <ProcessArticle />,
+      },
+      {
+        path: "/search-workflow",
+        element: <SearchWorkflow />,
+      },
+      {
+        path: "/browse-workflows",
+        element: <BrowseWorkflows />,
+      },
+    ]
+  },
+])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router}></RouterProvider>
   </React.StrictMode>
 );
 
