@@ -1,0 +1,15 @@
+.process-page {
+
+}
+
+.title {
+    color: blue;
+}
+
+.process-form {
+    list-style-type: none;
+}
+
+.process-form li {
+    padding: 8px;
+}
