@@ -36,7 +36,3 @@ function App() {
 }
 
 export default App;
-
-export async function loader() {
-  return { };
-}
