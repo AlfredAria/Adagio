@@ -1,5 +1,6 @@
 import './ProcessArticle.css';
 import { useState } from "react";
+import { hostName } from "./serverConfig.js";
 
 export default function ProcessArticle() {
     const [articleName, setArticleName] = useState('');
@@ -9,7 +10,7 @@ export default function ProcessArticle() {
     const handleProcess = (e) => {
         e.preventDefault();
 
-        fetch('http://localhost:3000/process', {
+        fetch(`${hostName}/process`, {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -49,7 +50,7 @@ export default function ProcessArticle() {
                 </ul>
             </form>
 
-            <div>{JSON.stringify(responseStatus)}</div>
+            <div>{responseStatus ? JSON.stringify(responseStatus) : ''}</div>
         </div>
     );
 }

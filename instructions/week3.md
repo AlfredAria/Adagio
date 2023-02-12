@@ -1,4 +1,4 @@
-# Week 3 - Implementing RESTFul APIs
+# Week 3 - (1) Implementing RESTFul APIs
 
 This week's focus is to implement some of the backend server APIs, but without attaching any other server processes or 3rd party APIs. Our backend is a Node.js/Express server that exposes RESTful APIs for viewing and manipulating the data stored. In the beginning, the APIs simply echoes the params from the request, some hardcorded data, plus returning a success state.
 
@@ -20,3 +20,8 @@ This week's focus is to implement some of the backend server APIs, but without a
 To start the Express server, simply browse to `Adagio/adagiostackserver/service` and run `$ node server.js`. The server will start listening on port `3000`.
 
 Use Postman to build and save an example request. ![Postman Example](img/week3-postman-example.png)
+
+# Week 3 - (2) Adding API keys to the local environment of the project (excluded from repository)
+
+![Adding .env file to the service node](img/week3-directory-with-env.png)
+![Content of the .env file](img/week3-env-file-content.png)
