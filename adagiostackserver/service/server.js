@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+require('dotenv').config();  // Reads API key(s) into the server
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*'); // Revisit this if plan to deploy on cloud
@@ -11,7 +12,8 @@ app.use((req, res, next) => {
 });
 
 const {
-  processDefault
+  processDefault,
+  process,
 } = require('./processArticles.js');
 const {
   browseDefault,
@@ -37,7 +39,8 @@ app.delete('/delete/:articleId', deleteArticleDefault);
 // For parsing application/json
 app.use(express.json());
 
-app.post('/process', processDefault);
+app.post('/processDefault', processDefault);
+app.post('/process', process);
 
 app.listen(3000, () => {
   console.log('Server is listening on port 3000');
