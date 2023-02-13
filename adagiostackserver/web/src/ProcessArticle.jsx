@@ -1,12 +1,25 @@
 import './ProcessArticle.css';
 import { useState } from "react";
 import { hostName } from "./serverConfig.js";
+import Entity from './Entity';
+
+function displayResults(results) {
+    if (!results.highlightedResponse) {
+        return (
+            <div>No entities found.</div>
+        )
+    }
+    return results.highlightedResponse.map(entity => (
+        <Entity props={entity} key={entity["name"]}></Entity>
+    ));
+}
 
 export default function ProcessArticle() {
     const [articleName, setArticleName] = useState('');
     const [articleBody, setArticleBody] = useState('');
     const [responseStatus, setResponseStatus] = useState('');
-   
+    const [results, setResults] = useState('');
+
     const handleProcess = (e) => {
         e.preventDefault();
 
@@ -18,7 +31,13 @@ export default function ProcessArticle() {
                 articleBody, articleBody,
             })
         }).then(res => res.json())
-          .then(data => setResponseStatus(data));
+            .then(data => {
+                setResults(data);
+                // TODO: Find the proper way to refresh frontend on data response.
+                setResponseStatus(200);
+            })
+            .catch(() => setResponseStatus(
+                "Something was wrong with the processing. Please check server console."));
     };
 
     return (
@@ -29,28 +48,29 @@ export default function ProcessArticle() {
                 <ul className="process-form">
                     <li>
                         <label>Article name:</label>
-                        
+
                         <input type="text"
                             required
                             value={articleName}
                             onChange={e => setArticleName(e.target.value)}
                         ></input>
-                        </li>
-                        <li>
+                    </li>
+                    <li>
                         <label>Article content:</label>
                         <textarea
                             required
                             value={articleBody}
                             onChange={e => setArticleBody(e.target.value)}
                         ></textarea>
-                        </li>
-                        <li>
+                    </li>
+                    <li>
                         <input type="submit" value="Process Article"></input>
-                        </li>
+                    </li>
                 </ul>
             </form>
 
-            <div>{responseStatus ? JSON.stringify(responseStatus) : ''}</div>
+            {/* If status is set, then there should be results to display. */}
+            <div>{responseStatus === 200 ? displayResults(results) : ''}</div>
         </div>
     );
 }
