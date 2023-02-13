@@ -21,6 +21,7 @@ module.exports.processDefault = (req, res) => {
         requestParams: req.params,
         requestQuery: req.query,
         requestBody: req.body,
+        highlightedResponse: convertGoogleResponse(defaultResponse()),
         errorMessage: 'Process default.'
     });
 };
@@ -96,4 +97,42 @@ function convertGoogleResponse(response) {
         }
         return true;
     });
+}
+
+// Returns two fake entities.
+function defaultResponse() {
+    return {
+        "entities": [
+            {
+                "name": "Test entity 1",
+                "type": "LOCATION",
+                "metadata": {
+                    "mid": "m/1"
+                },
+                "mentions": [
+                    {
+                        "text": {
+                            "content": "test content",
+                            "beginOffset": 0
+                        }
+                    }
+                ]
+            }, 
+            {
+                "name": "Test entity 2",
+                "type": "LOCATION",
+                "metadata": {
+                    "mid": "m/2"
+                },
+                "mentions": [
+                    {
+                        "text": {
+                            "content": "test content 2",
+                            "beginOffset": 4
+                        }
+                    }
+                ]
+            }
+        ]
+    }
 }
