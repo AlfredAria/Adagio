@@ -9,7 +9,7 @@ export default function ProcessArticle() {
     const handleProcess = (e) => {
         e.preventDefault();
 
-        fetch('http://localhost:3000/process', {
+        fetch('http://localhost:3000/processDefault', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
