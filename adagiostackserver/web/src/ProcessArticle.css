@@ -1,5 +1,5 @@
 .process-page {
-
+    
 }
 
 .title {
@@ -7,9 +7,16 @@
 }
 
 .process-form {
-    list-style-type: none;
+    width: 500px;
+    height: 500px;
+    
 }
 
 .process-form li {
-    padding: 8px;
+    list-style-type: none;
+    display: grid;
+    grid-row-gap: 10px;
+    padding: 20px;
+    grid-template-columns: auto auto;
+    padding-left: 5px;
 }
