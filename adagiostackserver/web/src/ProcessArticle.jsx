@@ -4,7 +4,13 @@ import { hostName } from "./serverConfig.js";
 import Entity from './Entity';
 
 function displayResults(results) {
-    if (!results.highlightedResponse) {
+    if (results.errorMessage) {
+        return (
+            <div>Got error message from the backend: {
+                JSON.stringify(results.errorMessage)}</div>
+        )
+    }
+    else if (!results.highlightedResponse) {
         return (
             <div>No entities found.</div>
         )
@@ -19,6 +25,7 @@ export default function ProcessArticle() {
     const [articleBody, setArticleBody] = useState('');
     const [responseStatus, setResponseStatus] = useState('');
     const [results, setResults] = useState('');
+    const [shouldSave, setShouldSave] = useState(false);
 
     const handleProcess = (e) => {
         e.preventDefault();
@@ -28,7 +35,8 @@ export default function ProcessArticle() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 articleName: articleName,
-                articleBody, articleBody,
+                articleBody: articleBody,
+                shouldSave: shouldSave ? 'True' : 'False',
             })
         }).then(res => res.json())
             .then(data => {
@@ -62,6 +70,13 @@ export default function ProcessArticle() {
                             value={articleBody}
                             onChange={e => setArticleBody(e.target.value)}
                         ></textarea>
+                    </li>
+                    <li>
+                        <label>Should save to database?</label>
+                        <input
+                            type="checkbox"
+                            onChange={() => setShouldSave(!shouldSave)}
+                            checked={shouldSave}></input>
                     </li>
                     <li>
                         <input type="submit" value="Process Article"></input>

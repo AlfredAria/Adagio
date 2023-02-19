@@ -1,6 +1,12 @@
 const express = require('express');
 const app = express();
-require('dotenv').config();  // Reads API key(s) into the server
+
+// Reads API key(s) into the server. Any modules depending on env keys
+// should be required below this line.
+require('dotenv').config();
+
+// Init database.
+require('./mongoApi.js').initialize();
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*'); // Revisit this if plan to deploy on cloud
