@@ -22,7 +22,8 @@ module.exports.initialize = async function () {
         //     { useNewUrlParser: true, useUnifiedTopology: true });
         // conn.model('ProcessedArticle', processedArticles, 'processedArticles');
     } catch (e) {
-        console.log("Mongoose could not connect. " + e);
+        console.log("Mongoose could not connect. " + 
+        "You may still use the Google API, but cannot save to the database." + e);
     }
 }
 
