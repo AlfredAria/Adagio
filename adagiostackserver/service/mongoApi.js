@@ -49,3 +49,26 @@ module.exports.store = async function ({
         errorCallback(error);
     }
 };
+
+// Gets the name and objIDs found in the database within the
+// given range of pagination, up to the number of records.
+// Params: {begin, limit}
+module.exports.listview = async function({
+    begin, 
+    limit = 10
+},successCallback, errorCallback) {
+    try {
+        const results = await ProcessedArticle.find(
+            {}, 
+            'title timestamp', 
+            {
+                skip: begin,
+                limit,
+                sort: 'desc'
+            }).exec();
+        successCallback(results);
+    } catch (error) {
+        console.log(error);
+        errorCallback(error);
+    }
+}
