@@ -31,14 +31,14 @@ const {
 const {
   deleteArticleDefault,
 } = require('./editArticle.js');
-
-app.get('/', (req, res) => {
-  res.send('Hello from the server!');
-});
+const {
+  listview
+} = require('./listView.js');
 
 app.get('/browse', browseDefault);
 app.get('/browse/:articleId', browseArticleDefault);
 app.get('/search', searchDefault);
+app.get('/listview', listview);
 
 app.delete('/delete/:articleId', deleteArticleDefault);
 
