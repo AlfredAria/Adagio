@@ -72,3 +72,23 @@ module.exports.listview = async function({
         errorCallback(error);
     }
 }
+
+// Finds the processed document by its objID acquired when the
+// article is first stored in the MongoDB.
+module.exports.itemview = async function({
+    objId
+}), successCallback, errorCallback) {
+    try {
+        // TODO: Confirm Mongo API for findOne
+        const result = await ProcessedArticle.findOne({
+            {
+                _objId: objId 
+            },
+            'timestamp title content result client'
+        ).exec();
+        successCallback(result);
+    } catch (error) {
+        console.log(error);
+        errorCallback(error);
+    }
+}
