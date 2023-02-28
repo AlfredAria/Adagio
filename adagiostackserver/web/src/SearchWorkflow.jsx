@@ -8,10 +8,10 @@ export default function SearchWorkflow() {
 
     function renderResult(result) {
         return (
-            <div key={result._id}>
+            <a key={result._id} className="item-link" href={'/browse/' + result._id}>
                 <div>{result.title}</div>
                 <div>{result.timestamp}</div>
-            </div>);
+            </a>);
     }
 
     useEffect(() => {
@@ -25,7 +25,7 @@ export default function SearchWorkflow() {
             })
             .catch(() => setResponseStatus(
                 "Something was wrong with the processing. Please check server console."));
-    });
+    }, [page]);
 
     return (
         <div>

@@ -32,13 +32,17 @@ const {
   deleteArticleDefault,
 } = require('./editArticle.js');
 const {
-  listview
+  listview,
 } = require('./listView.js');
+const {
+  itemview,
+} = require('./itemView.js');
 
 app.get('/browse', browseDefault);
 app.get('/browse/:articleId', browseArticleDefault);
 app.get('/search', searchDefault);
 app.get('/listview', listview);
+app.get('/itemview/:objid', itemview);
 
 app.delete('/delete/:articleId', deleteArticleDefault);
 
