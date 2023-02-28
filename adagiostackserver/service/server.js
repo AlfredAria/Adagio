@@ -36,7 +36,7 @@ const {
 } = require('./listView.js');
 const {
   itemview,
-} = require('./itemview.js');
+} = require('./itemView.js');
 
 app.get('/browse', browseDefault);
 app.get('/browse/:articleId', browseArticleDefault);

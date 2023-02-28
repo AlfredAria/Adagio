@@ -16,7 +16,7 @@ function displayResults(results) {
         )
     }
     return results.highlightedResponse.map(entity => (
-        <Entity props={entity} key={entity["name"]}></Entity>
+        <Entity props={{entity}} key={entity["name"]}></Entity>
     ));
 }
 

@@ -22,8 +22,8 @@ module.exports.initialize = async function () {
         //     { useNewUrlParser: true, useUnifiedTopology: true });
         // conn.model('ProcessedArticle', processedArticles, 'processedArticles');
     } catch (e) {
-        console.log("Mongoose could not connect. " + 
-        "You may still use the Google API, but cannot save to the database." + e);
+        console.log("Mongoose could not connect. " +
+            "You may still use the Google API, but cannot save to the database." + e);
     }
 }
 
@@ -53,18 +53,18 @@ module.exports.store = async function ({
 // Gets the name and objIDs found in the database within the
 // given range of pagination, up to the number of records.
 // Params: {begin, limit}
-module.exports.listview = async function({
-    begin, 
+module.exports.listview = async function ({
+    begin,
     limit = 10
-},successCallback, errorCallback) {
+}, successCallback, errorCallback) {
     try {
         const results = await ProcessedArticle.find(
-            {}, 
-            'title timestamp', 
+            {},
+            'title timestamp',
             {
                 skip: begin,
                 limit,
-                sort: 'desc'
+                sort: {'timestamp': 'desc'} // Return in descending chronological order.
             }).exec();
         successCallback(results);
     } catch (error) {
@@ -75,18 +75,22 @@ module.exports.listview = async function({
 
 // Finds the processed document by its objID acquired when the
 // article is first stored in the MongoDB.
-module.exports.itemview = async function({
+module.exports.itemview = async function ({
     objId
-}), successCallback, errorCallback) {
+}, successCallback, errorCallback) {
     try {
-        // TODO: Confirm Mongo API for findOne
-        const result = await ProcessedArticle.findOne({
-            {
-                _objId: objId 
-            },
+        if (!objId) {
+            throw new Error('objId is empty.');
+        }
+
+        const result = await ProcessedArticle.find({
+            "_id": mongoose.Types.ObjectId(objId)
+        },
             'timestamp title content result client'
         ).exec();
-        successCallback(result);
+        if (result.length > 0) {
+            successCallback(result[0]);
+        }
     } catch (error) {
         console.log(error);
         errorCallback(error);
