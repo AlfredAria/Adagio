@@ -1,4 +1,5 @@
-const {listview} = require('./mongoApi');
+const { listview } = require('./mongoApi');
+const { timestampToIsoDateTime } = require('./datetimeUtil');
 
 const LIMIT = 10;
 
@@ -20,7 +21,11 @@ module.exports.listview = (req, res) => {
     listview({
         begin: (page - 1) * LIMIT,
         limit: LIMIT
-    }, (data) => {
+    }, (data) => {        
+        data = data.map(article => {
+            article.timestamp = timestampToIsoDateTime(parseInt(article.timestamp));
+            return article;
+        });
         res.status(200).json({
             data,
             errorMessage: 'Success'
