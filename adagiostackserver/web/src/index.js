@@ -11,6 +11,7 @@ import ErrorPage from "./error-page";
 import ProcessArticle from './ProcessArticle';
 import SearchWorkflow from './SearchWorkflow';
 import BrowseWorkflows from './BrowseWorkflows';
+import Article from './Article';
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/browse-workflows",
         element: <BrowseWorkflows />,
+      },
+      {
+        path: "/browse/:articleId",
+        element: <Article />,
       },
     ]
   },
