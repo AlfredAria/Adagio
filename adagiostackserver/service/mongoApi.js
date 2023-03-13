@@ -96,3 +96,19 @@ module.exports.itemview = async function ({
         errorCallback(error);
     }
 }
+
+// Returns the number of articles in the database.
+// TODO: Also implement pagination for filtered articles that satisfies
+// the specified search criteria.
+module.exports.count = async function ({
+    /** TODO: Add params here */
+}, 
+    successCallback, errorCallback) {
+    try {
+        const totalArticles = await ProcessedArticle.countDocuments();
+        successCallback({totalArticles});
+    } catch (error) {
+        console.log(error);
+        errorCallback(error);
+    }
+}

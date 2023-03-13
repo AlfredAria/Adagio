@@ -1,7 +1,14 @@
-const { listview } = require('./mongoApi');
+const { listview, count } = require('./mongoApi');
 const { timestampToIsoDateTime } = require('./datetimeUtil');
 
-const LIMIT = 10;
+const DISPLAYED_PER_PAGE = 10;
+
+function returnAnyError(error, res) {
+    console.log(error);
+    res.status(500).json({
+        errorMessage: error
+    });
+}
 
 // Send text to Google language API for processing and identify
 // entities.
@@ -19,23 +26,26 @@ module.exports.listview = (req, res) => {
         });
     }
     listview({
-        begin: (page - 1) * LIMIT,
-        limit: LIMIT
-    }, (data) => {        
-        data = data.map(article => {
-            article.timestamp = timestampToIsoDateTime(parseInt(article.timestamp));
-            return article;
-        });
-        res.status(200).json({
-            data,
-            errorMessage: 'Success'
-        })
-    }, (error) => {
-        console.log(error);
-        res.status(500).json({
-            errorMessage: error
-        })
-    })
+        begin: (page - 1) * DISPLAYED_PER_PAGE,
+        limit: DISPLAYED_PER_PAGE
+    }, (data) => {       
+        count({}, ({totalArticles}) => {
+            data = data.map(article => {
+                article.timestamp = timestampToIsoDateTime(parseInt(article.timestamp));
+                return article;
+            });
+
+            console.log(totalArticles);
+
+            res.status(200).json({
+                data,
+                totalArticles,
+                totalPages: Math.ceil(totalArticles / DISPLAYED_PER_PAGE),
+                currentPage: page,
+                errorMessage: 'Success'
+            });
+        }, (error) => returnAnyError(error, res))
+    }, (error) => returnAnyError(error, res))
 }
 
 module.exports.load = (req, res) => {
