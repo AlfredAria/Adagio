@@ -1,0 +1,25 @@
+.list-container {
+    min-height: 520px;
+}
+
+.item-link {
+    width: 480px;
+    display: flex;
+    text-decoration: none;
+}
+
+.item-link:hover {
+    text-decoration: none;
+    color: #ccc;
+}
+
+.item-title {
+    max-width: 380px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+}
+
+.item-timestamp {
+
+}
