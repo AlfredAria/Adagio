@@ -1,5 +1,5 @@
 export default function PreviousWorkflows() {
     return (
-        <div>Previous Workflows</div>
+        <h2>Previous Workflows</h2>
     );
 }

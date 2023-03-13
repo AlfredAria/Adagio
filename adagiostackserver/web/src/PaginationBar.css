@@ -1,0 +1,20 @@
+.bar {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+}
+
+.page-number {
+    padding: 0 4px;
+    font-size: 16px;
+}
+
+.page-number.selected {
+    font-size: 24px;
+    color: blue;
+}
+
+.page-number:hover {
+    font-size: 28px;
+    animation: 100ms ease-in;
+}

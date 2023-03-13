@@ -12,17 +12,19 @@ function returnAnyError(error, res) {
 
 // Send text to Google language API for processing and identify
 // entities.
+// The accepted page number is 1-index based (natural)
 // POST /listview
 module.exports.listview = (req, res) => {
     let page = 0;
     try {
-        page = parseInt(req.params.p);
+        page = parseInt(req.query.p);
+        console.log(`Page selected: ${req.query.p}`)
         if (page < 0) {
             throw new Error('Invalid page number.');
         }
     } catch (e) {
         res.status(400).json({
-            errorMessage: `Invalid page input '${req.params.p}'`
+            errorMessage: `Invalid page input '${req.query.p}'`
         });
     }
     listview({
@@ -35,12 +37,14 @@ module.exports.listview = (req, res) => {
                 return article;
             });
 
-            console.log(totalArticles);
+            const totalPages = Math.ceil(totalArticles / DISPLAYED_PER_PAGE);
+            console.log(`Total articles found: ${totalArticles}`);
+            console.log(`Pagination: ${page} / ${totalPages}`);
 
             res.status(200).json({
                 data,
                 totalArticles,
-                totalPages: Math.ceil(totalArticles / DISPLAYED_PER_PAGE),
+                totalPages,
                 currentPage: page,
                 errorMessage: 'Success'
             });

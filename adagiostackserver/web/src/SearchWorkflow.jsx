@@ -1,9 +1,10 @@
+import './SearchWorkflow.css';
 import { useEffect, useState } from "react";
 import { hostName } from "./serverConfig";
 import PaginationBar from "./PaginationBar";
 
 export default function SearchWorkflow() {
-    const [page, setPage] = useState(0);
+    const [page, setPage] = useState(1);  // Pagination is 1-based.
     const [listResults, setListResults] = useState([]);
     const [responseStatus, setResponseStatus] = useState('');
     const [paginationData, setPaginationData] = useState({
@@ -11,11 +12,30 @@ export default function SearchWorkflow() {
         totalPages: 0
     });
 
+    function renderPaginationBar() {
+        if (paginationData.totalArticles > 0) {
+            return <div className="pagination-container">
+                <PaginationBar
+                    props={{
+                        currentPage: page,
+                        maxPage: paginationData.totalPages,
+                        onPageSelect: (page) => {
+                            setPage(page);
+                        }
+                    }}></PaginationBar>
+            </div>
+        } else {
+            return "";
+        }
+    }
+    
     function renderResult(result) {
         return (
-            <a key={result._id} className="item-link" href={'/browse/' + result._id}>
-                <div>{result.title}</div>
-                <div>{result.timestamp}</div>
+            <a key={result._id} 
+                className="item-link" 
+                href={'/browse/' + result._id}>
+                <div className="item-title">{result.title}</div>
+                <div className="item-timestamp">{result.timestamp}</div>
             </a>);
     }
 
@@ -42,23 +62,23 @@ export default function SearchWorkflow() {
 
     return (
         <div>
-            <div>Search for a previous workflow</div>
+            <h2>Search for a previous workflow</h2>
 
             {listResults.length > 0 && (
-                <ul>
+                <div>
+                    Total articles: {paginationData.totalArticles}
+                </div>
+            )}
+
+            {renderPaginationBar()}
+
+            {listResults.length > 0 && (
+                <ul className="list-container">
                     {listResults.map(renderResult)}
                 </ul>
             )}
 
-            {paginationData.totalArticles > 0 && (
-                <div className="pagination-container">
-                    <PaginationBar
-                        currentPage={paginationData.totalArticles}
-                        maxPage={paginationData.totalPages}
-                        onPageSelect={(page) => setPage(page)}
-                    ></PaginationBar>
-                </div>
-            )}
+            {renderPaginationBar()}
 
             <div>
                 {responseStatus ? responseStatus : ''}
