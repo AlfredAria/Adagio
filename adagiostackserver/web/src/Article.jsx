@@ -15,13 +15,12 @@ export default function Article() {
             method: 'GET',
             headers: { "Content-Type": "application/json" },
         }).then(res => res.json())
-        .then(response => {
-            setData(response);
-            setResponseStatus('');
-        })
-        .catch(() => 
-            setResponseStatus(`Not able to load article for ${
-                articleId}`));
+            .then(response => {
+                setData(response);
+                setResponseStatus('');
+            })
+            .catch(() =>
+                setResponseStatus(`Not able to load article for ${articleId}`));
     }, [articleId]);
 
     return (
@@ -30,11 +29,17 @@ export default function Article() {
                 <div>{responseStatus}</div>
             }
             <div>Article ID: {data["articleId"]}</div>
-            <div className="article-title">{data["title"]}</div>
-            <div className="article-content">{data["content"]}</div>
+            <div className="article-title">Article title: {data["title"]}</div>
+            <div className="developer-id">
+                Entry developer: {data["client"]}
+            </div>
+            <div className="article-content">
+                <h3>Article content</h3>
+                {data["content"]}
+            </div>
 
-            {data["result"] && data["result"]["entities"].map((entity, index) => 
-                    <Entity key={entity["name"] + index} props={{entity}}></Entity>
+            {data["result"] && data["result"]["entities"].map((entity, index) =>
+                <Entity key={entity["name"] + index} props={{ entity }}></Entity>
             )}
         </div>
     )

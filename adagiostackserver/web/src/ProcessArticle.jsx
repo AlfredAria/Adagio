@@ -50,7 +50,7 @@ export default function ProcessArticle() {
 
     return (
         <div className="process-page">
-            <div className="title">Process a new article</div>
+            <h2>Process a new article</h2>
 
             <form onSubmit={handleProcess}>
                 <ul className="process-form">
