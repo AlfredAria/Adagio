@@ -80,9 +80,7 @@ export default function SearchWorkflow() {
 
             {renderPaginationBar()}
 
-            <div>
-                {responseStatus ? responseStatus : ''}
-            </div>
+            
         </div>
     );
 }
