@@ -1,20 +1,33 @@
-.bar {
-    min-height: 48px;
-    display: flex;
-    align-items: center;
-}
 
 .page-number {
     padding: 0 4px;
     font-size: 16px;
+    color:grey;
+
 }
 
 .page-number.selected {
-    font-size: 24px;
-    color: blue;
+    font-size: 16px;
+    padding: 5px 10px 5px 10px;
+    background-color: rgb(233, 230, 230);
 }
 
 .page-number:hover {
-    font-size: 28px;
+    font-size: 16px;
     animation: 100ms ease-in;
+}
+
+table.bar {
+    height: 48px;
+    border-collapse: collapse;
+    width: 100%;
+}
+th, td {
+    text-align: left;
+    padding: 8px;
+    width: 25%;
+}
+th {
+    background-color: #f2f2f2;
+    width: 25%;
 }

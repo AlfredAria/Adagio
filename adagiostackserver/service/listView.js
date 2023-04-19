@@ -1,7 +1,7 @@
 const { listview, count } = require('./mongoApi');
 const { timestampToIsoDateTime } = require('./datetimeUtil');
 
-const DISPLAYED_PER_PAGE = 10;
+const DISPLAYED_PER_PAGE = 5;
 
 function returnAnyError(error, res) {
     console.log(error);

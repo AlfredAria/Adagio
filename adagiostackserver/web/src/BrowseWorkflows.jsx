@@ -11,27 +11,14 @@ export default function PreviousWorkflows() {
                         <th>Column 3</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>Row 1, Column 1</td>
-                        <td>Row 1, Column 2</td>
-                        <td>Row 1, Column 3</td>
-                    </tr>
-                </tbody>
             </table></div>
             <div className="title">
                 <h1>
-                    All Saved Workflows
+                All Workflows Saved
                 </h1>
             </div>
             <div className="workflows-page">
                 <table>
-                    <thead>
-                        <tr>
-                            <th>Column 1</th>
-                            <th>Column 2</th>
-                        </tr>
-                    </thead>
                     <tbody>
                         <tr>
                             <td>Row 1, Column 1</td>
@@ -49,24 +36,14 @@ export default function PreviousWorkflows() {
                 </table></div>
             <div className="number-page">
                 <table>
-                    <thead>
-                        <tr>
-                            <th>Column 1</th>
-                            <th>Column 2</th>
-                            <th>Column 3</th>
-                            <th>Column 4</th>
-                            <th>Column 5</th>
-                            <th>Column 6</th>
-                        </tr>
-                    </thead>
                     <tbody>
                         <tr>
-                            <td>Row 1, Column 1</td>
-                            <td>Row 1, Column 2</td>
-                            <td>Row 1, Column 3</td>
-                            <td>Row 1, Column 4</td>
-                            <td>Row 1, Column 5</td>
-                            <td>Row 1, Column 6</td>
+                            <td>1,</td>
+                            <td>2,</td>
+                            <td>3,</td>
+                            <td>4,</td>
+                            <td>5,</td>
+                            <td>...</td>
                         </tr>
                     </tbody>
                 </table></div>
